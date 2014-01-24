@@ -28,7 +28,7 @@ public class UIElement {
      public void waitForPageUpdate(WaitMode waitMode) {
         switch (waitMode){
             case AJAX:
-                waitForElementIsHidden(50);
+                waitForElementIsHidden(waitTimeout);
                 break;
            case SLEEP:
                 wait(sleepTime);

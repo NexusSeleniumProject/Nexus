@@ -31,7 +31,7 @@ public class BaseTest {
     }
 
     @Before
-    public static void setUp() {
+    public void setUp() {
         LOG.info("Test");
         browser= getConfigReader().getValueByKey("browser");
         appURL= getConfigReader().getValueByKey("app_url");
@@ -50,7 +50,7 @@ public class BaseTest {
             driver = new FirefoxDriver();
         }
         LOG.info(appURL);
-        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get(appURL);
     }
 

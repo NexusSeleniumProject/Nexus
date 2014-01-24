@@ -20,7 +20,7 @@ public class BasicNavigation {
 
     @Given("^Start An Application$")
     public static void startApplication(){
-        BaseTest.setUp();
+    //    BaseTest.setUp();
     }
 
     @And("^Verify Consolidated View$")
