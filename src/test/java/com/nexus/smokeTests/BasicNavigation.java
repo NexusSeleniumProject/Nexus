@@ -1,10 +1,10 @@
 package com.nexus.smokeTests;
 
 import base.BaseTest;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
-import cucumber.api.java.en.And;
+import cucumber.annotation.en.And;
+import cucumber.annotation.en.Given;
+import cucumber.annotation.en.Then;
+import cucumber.annotation.en.When;
 import ui.model.NexusArticleDetailedScreen;
 import ui.model.NexusLoginScreen;
 import ui.model.NexusMainConsolidatedViewScreen;
@@ -20,7 +20,12 @@ public class BasicNavigation {
 
     @Given("^Start An Application$")
     public static void startApplication(){
-    //    BaseTest.setUp();
+        BaseTest.setUp();
+    }
+
+    @And("^Login In Application with login '(.+)' and password= '(.+)'$")
+    public static void loginInApplication(String login, String password) throws InterruptedException{
+        NexusLoginScreen.doLogin(login, password);
     }
 
     @And("^Verify Consolidated View$")
@@ -58,10 +63,6 @@ public class BasicNavigation {
         NexusMainConsolidatedViewScreen.clickAtFirstLatestProductArticle();
     }
 
-    @And("^Login in application$")
-    public static void doLogin() throws InterruptedException{
-        NexusLoginScreen.doLogin();
-    }
 
     @And("^Verify PDF Viewer Is Open$")
     public static void verifyPDFViewverIsOpened(){

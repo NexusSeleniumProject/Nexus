@@ -1,7 +1,6 @@
 package ui.model;
 
 import base.BaseTest;
-import cucumber.api.java.en.Given;
 import toolkit.WaitMode;
 import ui.map.NexusLoginMap;
 import org.openqa.selenium.By;
@@ -28,10 +27,10 @@ public class NexusLoginScreen {
         return new UIElement(BaseTest.getDriver().findElement(By.xpath(NexusLoginMap.LoginPage.BTN_LOGIN.getId())));
     }
 
-    public static void doLogin() throws InterruptedException{
-        NexusLoginScreen.getInpUsername().setValue("test.user1@test.com");
-        NexusLoginScreen.getInpPassword().setValue("qwerty");
+    public static void doLogin(String login,  String passwopd) throws InterruptedException{
+        NexusLoginScreen.getInpUsername().setValue(login);
+        NexusLoginScreen.getInpPassword().setValue(passwopd);
         Thread.sleep(2000);
-        NexusLoginScreen.getBtnLogin().click(WaitMode.AJAX);
+      //  NexusLoginScreen.getBtnLogin().click(WaitMode.AJAX);
     }
  }

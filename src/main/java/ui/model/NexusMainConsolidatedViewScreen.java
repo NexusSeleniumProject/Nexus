@@ -1,7 +1,6 @@
 package ui.model;
 
 import base.BaseTest;
-import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import toolkit.WaitMode;

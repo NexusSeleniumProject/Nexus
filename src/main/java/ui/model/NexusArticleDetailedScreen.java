@@ -1,14 +1,11 @@
 package ui.model;
 
 import base.BaseTest;
-import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import toolkit.WaitMode;
 import ui.map.NexusArticleMap;
 import toolkit.controls.UIElement;
-
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.

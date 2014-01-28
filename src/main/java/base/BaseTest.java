@@ -2,6 +2,7 @@ package base;
 
 
 import org.apache.log4j.Logger;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Before;
 import org.junit.AfterClass;
@@ -30,8 +31,8 @@ public class BaseTest {
         return configReader;
     }
 
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         LOG.info("Test");
         browser= getConfigReader().getValueByKey("browser");
         appURL= getConfigReader().getValueByKey("app_url");
