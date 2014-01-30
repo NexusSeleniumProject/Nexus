@@ -126,7 +126,14 @@
 				<artifactId>log4j</artifactId>
 				<version>1.2.17</version>
 			</dependency>	
-						
+			<dependency>
+				<groupId>org.sikuli</groupId>
+				<artifactId>sikuli</artifactId>
+				<version>1.0</version>
+				<scope>system</scope>
+				<systemPath>C:/Users/okunev/Desktop/Sikuli/sikuli-java.jar</systemPath>
+			</dependency>
+			
 		</dependencies>	
 <!--
 <reporting>

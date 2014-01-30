@@ -23,7 +23,7 @@ public class BasicNavigation {
         BaseTest.setUp();
     }
 
-    @And("^Login In Application with login '(.+)' and password= '(.+)'$")
+    @When("^Login In Application with login '(.+)' and password= '(.+)'$")
     public static void loginInApplication(String login, String password) throws InterruptedException{
         NexusLoginScreen.doLogin(login, password);
     }

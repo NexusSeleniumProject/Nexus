@@ -1,13 +1,11 @@
 package nexusSmokeTests;
 
 import base.BaseTest;
-
 import org.junit.Test;
-import org.sikuli.script.FindFailed;
-
-import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
+import org.sikuli.script.Pattern;
 import ui.model.NexusLoginScreen;
+import org.sikuli.script.FindFailed;
 import ui.model.NexusArticleDetailedScreen;
 import ui.model.NexusMainConsolidatedViewScreen;
 
@@ -20,20 +18,13 @@ import ui.model.NexusMainConsolidatedViewScreen;
  */
 
 public class ContentBasicNavigationTest extends BaseTest {
-
+    public static Screen screen = new Screen();
+    public static Pattern loginButton = new Pattern("C:\\devtools\\login_button.PNG");
 
 
     @Test
     public void doBasicNavigation() throws FindFailed, InterruptedException {
         NexusLoginScreen.doLogin("test.user1@test.com", "qwerty");
-
-        Screen screen = new Screen();
-        Pattern image = new Pattern("C:\\devtools\\login_button.PNG");
-        screen.click(image);
-
-
-
-
 
         NexusMainConsolidatedViewScreen.verifyConsolidatedView();
 
@@ -86,8 +77,4 @@ public class ContentBasicNavigationTest extends BaseTest {
         // Go to the Main Page
         NexusMainConsolidatedViewScreen.openNexusMainPage();
     }
-
-
-
-
 }

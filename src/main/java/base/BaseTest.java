@@ -1,11 +1,9 @@
 package base;
 
-
-import org.apache.log4j.Logger;
-import org.junit.BeforeClass;
 import org.junit.Rule;
-import org.junit.Before;
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.apache.log4j.Logger;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,16 +11,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-
 public class BaseTest {
 
     private static String appURL = null;
-    private static String browser = null;
     private static WebDriver driver = null;
     private static ConfigReader configReader= null;
-
+    public static Browsers browser;
     private final static Logger LOG = Logger.getLogger(BaseTest.class);
-
 
     protected static ConfigReader getConfigReader() {
         if (configReader==null){
@@ -33,31 +28,44 @@ public class BaseTest {
 
     @BeforeClass
     public static void setUp() {
-        LOG.info("Test");
-        browser= getConfigReader().getValueByKey("browser");
+        browser = Browsers.browserForName(getConfigReader().getValueByKey("browser"));
         appURL= getConfigReader().getValueByKey("app_url");
-        if (browser.equals("iexplorer")){
-            DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
-            System.setProperty("webdriver.ie.driver", getConfigReader().getValueByKey("ieDriverDirectory"));
-            caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,  true);
-            driver = new InternetExplorerDriver(caps);
-            driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
-            driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        } else if (browser.equals("chrome")){
-            System.setProperty("webdriver.chrome.driver", getConfigReader().getValueByKey("chromeDriverDirectory"));
-            driver = new ChromeDriver();
-        } else if (browser.equals("firefox")){
-            System.setProperty("webdriver.firefox.bin", getConfigReader().getValueByKey("firefoxDriver"));
-            driver = new FirefoxDriver();
+        switch(browser){
+            case CHROME:
+                driver = createChromeDriver();
+                break;
+            case IEXPLORER:
+                driver = createIExplorerDriver();
+                break;
+            case FIREFOX:
+                driver = createFirefoxDriver();
+                break;
         }
         LOG.info(appURL);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get(appURL);
     }
 
+    private static WebDriver createChromeDriver() {
+        System.setProperty("webdriver.chrome.driver", getConfigReader().getValueByKey("chromeDriverDirectory"));
+        return new ChromeDriver();
+    }
+
+    private static WebDriver createIExplorerDriver() {
+        DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
+        System.setProperty("webdriver.ie.driver", getConfigReader().getValueByKey("ieDriverDirectory"));
+        caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,  true);
+        return new InternetExplorerDriver(caps);
+    }
+
+    private static WebDriver createFirefoxDriver() {
+        System.setProperty("webdriver.firefox.bin", getConfigReader().getValueByKey("firefoxDriver"));
+        return new FirefoxDriver();
+    }
+
     @AfterClass
     public static void stopSelenium() {
-      //  driver.quit();
+        driver.quit();
     }
 
     @Rule
