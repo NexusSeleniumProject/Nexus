@@ -19,6 +19,10 @@ public class SkypeTest {
     public static Pattern passwordInp = new Pattern("C:\\SkypeTest\\password.PNG");
     public static Pattern signInBtn = new Pattern("C:\\SkypeTest\\signInButton.PNG");
     public static Pattern errorMessage = new Pattern("C:\\SkypeTest\\errorMessage.PNG");
+    public static Pattern first_foto = new Pattern("C:\\SkypeTest\\1_foto.PNG");
+    public static Pattern base = new Pattern("C:\\SkypeTest\\base.PNG");
+    public static Pattern screen1 = new Pattern("C:\\SkypeTest\\screen.PNG");
+    public static Pattern sikuli_t = new Pattern("C:\\SkypeTest\\sikuli_t.PNG");
     public static String login = "nikolajs.okunevs";
     public static String password = "********";
     public static Screen  screen = new Screen();
@@ -30,32 +34,26 @@ public class SkypeTest {
         // Screen class Initialization
         Screen screen = new Screen();
         // Wait till skype login sscreen is opened
-        screen.wait(loginWindow);
+        screen.wait(passwordInp);
         //
         // screen.type(loginInp, login);
         screen.type(passwordInp, password);
         screen.click(signInBtn);
-        Settings se = new Settings();
 
-        //se.OcrTextSearch=true;
-        //se.OcrTextRead=true;
-      //  Settings.OcrTextSearch=true;
-      //  Settings.OcrTextRead=true;
-        System.out.print(se.OcrTextRead);
+         Settings.OcrTextRead=true;
+        Settings.OcrTextSearch=true;
 
-        Region dropDownRegion = new Region(screen.getLastMatch().getX(),screen.getLastMatch().getY(),300,100);
-
-        System.out.print(dropDownRegion.text());
-        System.out.print(screen.text());
 
         elementWait();
 
 
-     // skype.close();
+      skype.close();
     }
 
     public static void elementWait() throws Exception{
+        System.out.println("111111111");
         System.out.println(screen.exists("C:\\SkypeTest\\errorMessage.PNG", 20));
-      System.out.print(screen.find(errorMessage).text());
+        System.out.println(screen.find(errorMessage).text() + " - tekst");
+        System.out.println("222222222222");
     }
 }

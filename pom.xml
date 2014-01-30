@@ -131,10 +131,11 @@
 				<artifactId>sikuli</artifactId>
 				<version>1.0</version>
 				<scope>system</scope>
-				<systemPath>C:/Users/okunev/Desktop/Sikuli/sikuli-java.jar</systemPath>
-			</dependency>
-			
+				<systemPath>C:/devtools/Sikuli/sikuli-java.jar</systemPath>
+			</dependency> 
 		</dependencies>	
+		
+		
 <!--
 <reporting>
     <plugins>
